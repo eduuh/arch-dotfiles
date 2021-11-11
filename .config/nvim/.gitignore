@@ -1,7 +1,11 @@
 
-/autoload  
-/plugged  
-/session  
-/UltiSnips  
-/undo  
-
+/autoload
+/plugged
+/session
+/UltiSnips
+/undo
+/spell
+/test
+.netrwhist
+LICENSE
+readme.md

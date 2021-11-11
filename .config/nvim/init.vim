@@ -2,76 +2,7 @@
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
-" :find
-set path+=**
-set wildignore+=**/coverage/*
-" Enable
-set wildmode=longest,list,full
-set wildmenu
-set mouse=a
-set noswapfile
-set incsearch
-set hidden
-" Ignore files
-set wildignore+=*.pyc
-set wildignore+=*_build/*
-set wildignore+=**/obj*
-set wildignore+=**/bin*
-set wildignore+=**/node_modules/*
-set wildignore+=**/android/*
-set wildignore+=**/ios/*
-set wildignore+=**/.git/*
 
-" Disables automatic commenting on newline:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" Perform dot commands over visual blocks:
-vnoremap . :normal .<CR>
-
-" move lines up or down
-  " move down
-vnoremap N :m '>+1<CR>gv=gv
-  " move up
-vnoremap E :m '<-2<CR>gv=gv
-
-set signcolumn=yes
-" Toggle between alternate files
-nmap <BS> <C-^>
-
-" Open my bibliography file in split
-map <leader>b :vsp<space>$BIB<CR>
-map <leader>r :vsp<space>$REFER<CR>
-
-" Replace all is aliased to S
-nnoremap S :%s//g<Left><Left>
-
-" Some basics:
-nnoremap c "_c
-set nocompatible
-filetype plugin on
-syntax on
-set encoding=utf-8
-set nohlsearch
-set mouse=a
-set noshowmode
-set noruler
-set noshowcmd
-
-set wrap
-set linebreak
-set showbreak=+++
-
-"
-xnoremap <leader>p "_dP
-" getting out of terminal mode
-tnoremap <Esc> <C-\><C-n>
-
-"great remap
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-
-" delete without putting in register
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
 
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -312,7 +243,7 @@ require("autosave").setup(
     {
         enabled = true,
         execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-        events = {"InsertLeave", "TextChanged"},
+        events = {"BufLeave", "BufLeave"},
         conditions = {
             exists = true,
             filename_is_not = {},
@@ -337,10 +268,70 @@ let g:OmniSharp_highlighting = 0
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 
 
-set colorcolumn=80
 set incsearch
 set smartindent
 set shiftwidth=2
 set tabstop=2 softtabstop=2 expandtab
 set noswapfile
 set updatetime=50
+set breakindent
+set breakindentopt=shift:2,min:40,sbr
+set colorcolumn=80
+set textwidth=100
+set wrap
+set linebreak
+" Some basics:
+nnoremap c "_c
+filetype plugin on
+syntax on
+set encoding=utf-8
+set nohlsearch
+set mouse=a
+set noshowmode
+set noruler
+set noshowcmd
+" ifind
+set path+=**
+set wildignore+=**/coverage/*
+" Enable
+set wildmode=longest,list,full
+set wildmenu
+set mouse=a
+set noswapfile
+set incsearch
+set hidden
+" Ignore files
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=**/obj*
+set wildignore+=**/bin*
+set wildignore+=**/node_modules/*
+set wildignore+=**/android/*
+set wildignore+=**/ios/*
+set wildignore+=**/.git/*
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Perform dot commands over visual blocks:
+vnoremap . :normal .<CR>
+" move lines up or down
+  " move down
+vnoremap N :m '>+1<CR>gv=gv
+  " move up
+vnoremap E :m '<-2<CR>gv=gv
+set signcolumn=yes
+" Toggle between alternate files
+nmap <BS> <C-^>
+" Open my bibliography file in split
+map <leader>b :vsp<space>$BIB<CR>
+map <leader>r :vsp<space>$REFER<CR>
+" Replace all is aliased to S
+nnoremap S :%s//g<Left><Left>
+xnoremap <leader>p "_dP
+" getting out of terminal mode
+tnoremap <Esc> <C-\><C-n>
+"great remap
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+" delete without putting in register
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d

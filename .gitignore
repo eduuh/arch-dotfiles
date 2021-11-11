@@ -6,6 +6,7 @@
 ~/.config/nvim/plugged
 ~/.config/nvim/spell
 ~/.config/nvim/test
+~/.config/nvim/spell
 
 # User-specific files
 *.rsuser
