@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo -n "Please enter a port number: "
+read port
+sudo kill -9 $(lsof -t -i:$port)

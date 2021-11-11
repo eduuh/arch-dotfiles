@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ ! -d "$DIRECTORY" ];
+then
+mkdir ~/project
+ln -sf ~/repos/* ~/project
+ln -sf ~/.local/src/* ~/project
+ln -sf ~/.dotfiles  ~/project
+else
+  echo "Repositories all Set"
+fi
