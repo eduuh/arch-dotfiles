@@ -46,6 +46,8 @@ Plug 'SirVer/ultisnips'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'SirVer/ultisnips'
+
+Plug 'rstacruz/vim-closer'
 call plug#end()
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
@@ -94,9 +96,6 @@ set termguicolors
 let ayucolor="dark"
 colorscheme ayu
 
-source  $HOME/.config/nvim/defx.vim
-luafile $HOME/.config/nvim/compe-config.lua
-luafile $HOME/.config/nvim/lsp.lua
 " source  $HOME/.config/nvim/coc.vim
 
 nnoremap <leader>h :call ToggleHiddenAll()<CR>
@@ -357,3 +356,7 @@ autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.cs lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+
+source  $HOME/.config/nvim/defx.vim
+luafile $HOME/.config/nvim/lsp.lua
+luafile $HOME/.config/nvim/compe-config.lua
