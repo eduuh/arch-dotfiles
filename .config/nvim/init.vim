@@ -2,7 +2,7 @@
 nnoremap <SPACE> <Nop>
 let mapleader =" "
 
-
+set completeopt=menuone,noselect
 
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -17,11 +17,10 @@ Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-git'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'ThePrimeagen/git-worktree.nvim'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'puremourning/vimspector'
 Plug 'nvim-telescope/telescope-fzf-native.nvim'
 "debuggin setup
-Plug 'fannheyward/telescope-coc.nvim'
 Plug 'szw/vim-maximizer'
 " change the working directory to the files root directory
 Plug 'nvim-lua/plenary.nvim'
@@ -39,6 +38,14 @@ Plug 'Pocco81/AutoSave.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'github/copilot.vim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'tpope/vim-commentary'
+Plug 'jlcrochet/vim-razor'
+" Plug 'OmniSharp/omnisharp-vim'
+" Plug 'nickspoons/vim-sharpenup'
+Plug 'SirVer/ultisnips'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.
@@ -88,7 +95,9 @@ let ayucolor="dark"
 colorscheme ayu
 
 source  $HOME/.config/nvim/defx.vim
-source  $HOME/.config/nvim/coc.vim
+luafile $HOME/.config/nvim/compe-config.lua
+luafile $HOME/.config/nvim/lsp.lua
+" source  $HOME/.config/nvim/coc.vim
 
 nnoremap <leader>h :call ToggleHiddenAll()<CR>
 
@@ -107,7 +116,7 @@ nnoremap <leader>co :e ~/.config/nvim/init.vim<CR>
 
 nnoremap <C-_> <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown())<cr>
 
-nnoremap <leader>sc <cmd>lua require("telescope.builtin").find_files({hidden=true,search_dirs={'~//.local//bin'} ,layout_config={prompt_position="top"}})<cr>
+nnoremap <leader>sc <cmd>lua require("telescope.builtin").find_files({hidden=true,search_dirs={'~/.local//bin'} ,layout_config={prompt_position="top"}})<cr>
 nnoremap <leader>src :Telescope find_browser cwd=~/.local/src <cr>
 
 
@@ -174,7 +183,6 @@ nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
 nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
 
 "harpoon
-
 nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
@@ -219,8 +227,8 @@ EOF
 lua <<EOF
 require('telescope').setup{
   defaults = {
-     prompt_prefix = "$ ",
-  file_ignore_patterns = {"obj", "bin"},
+     prompt_prefix = "> ",
+  file_ignore_patterns = {"obj", "bin", "node_modules"},
   mappings= {
      n = {
       ["<leader><leader>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
@@ -243,7 +251,7 @@ require("autosave").setup(
     {
         enabled = true,
         execution_message = "AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"),
-        events = {"BufLeave", "BufLeave"},
+        events = {"InsertLeave","TextChanged", "BufLeave"},
         conditions = {
             exists = true,
             filename_is_not = {},
@@ -263,9 +271,15 @@ EOF
 nnoremap <silent> <leader>q :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 autocmd FileType cs nnoremap <leader>rc :Dispach dotnet run<cr>
+autocmd FileType cs nnoremap <leader>rb :Dispach dotnet build<cr>
 autocmd FileType cs nnoremap <leader>rt :OmniSharpRunTest<cr>
 let g:OmniSharp_highlighting = 0
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+
+let g:ale_linters = {
+\ 'cs': ['OmniSharp'],
+  \ 'sh': ['language_server'],
+\}
 
 
 set incsearch
@@ -335,3 +349,11 @@ vnoremap <leader>y "+y
 " delete without putting in register
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+
+" auto-format
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.cs lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
