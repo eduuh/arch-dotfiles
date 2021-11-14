@@ -48,6 +48,9 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'SirVer/ultisnips'
 
 Plug 'rstacruz/vim-closer'
+
+"vim sessions save
+Plug 'tpope/vim-obsession'
 call plug#end()
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save.

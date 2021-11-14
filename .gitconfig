@@ -5,3 +5,4 @@
 	defaultBranch = main
 [pager]
 	branch = false
+	diff = false
