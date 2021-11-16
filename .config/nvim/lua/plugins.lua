@@ -34,5 +34,12 @@ return require('packer').startup(function()
         run = ':TSUpdate'
     }
  use 'jose-elias-alvarez/null-ls.nvim'
- use 'nvim-telescope/telescope-fzf-native.nvim'
+ use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+ use 'mattn/emmet-vim'
+ use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
+use {
+    'glacambre/firenvim',
+    run = function() vim.fn['firenvim#install'](0) end
+}
+
 end)

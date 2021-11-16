@@ -16,12 +16,15 @@ require('autosave').setup(
 
 -- tree sitter
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-  },
   }
+  }
+
+local neogit = require('neogit')
+neogit.setup()
 
 require('harpoon-config')
 
@@ -30,7 +33,7 @@ vim.cmd([[
    colorscheme nightfox
 ]])
 
--- remove whitespaces
+-- remove whitespaces ff
 vim.cmd([[
    autocmd BufWritePre * %s/\s\+$//e
    autocmd BufWritePre * %s/\n\+\%$//e
@@ -46,24 +49,24 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-  nnoremap silent <leader>vl :call vimspector#Launch()<CR>
-  nnoremap silent <leader>vc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-  nnoremap silent <leader>vt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-  nnoremap silent <leader>vv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-  nnoremap silent <leader>vw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-  nnoremap silent <leader>vs :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-  nnoremap silent <leader>vo :call GotoWindow(g:vimspector_session_windows.output)<CR>
-  nnoremap silent <leader>vq :call vimspector#Reset()<CR>
-  nnoremap silent <leader>vi <Plug>VimspectorStepInto
-  nnoremap silent <leader>vu <Plug>VimspectorStepOver
-  nnoremap silent <leader>vn <Plug>VimspectorStepOut
-  nnoremap silent <leader>vr <Plug>VimspectorRestart
-  nnoremap silent <leader>tc :call vimspector#Continue()<CR>
-  nnoremap silent <leader><F11> <Plug>VimspectorUpFrame
-  nnoremap silent <leader><F12> <Plug>VimspectorDownFrame
-  nnoremap silent <leader>rc <Plug>VimspectorRunToCursor
-  nnoremap silent <leader>tb <Plug>VimspectorToggleBreakpoint
-  nnoremap silent <leader>cb <Plug>VimspectorToggleConditionalBreakpoint
+  nnoremap <leader>vl :call vimspector#Launch()<CR>
+  nnoremap  <leader>vc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+  nnoremap  <leader>vt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+  nnoremap  <leader>vv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+  nnoremap  <leader>vw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+  nnoremap  <leader>vs :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+  nnoremap  <leader>vo :call GotoWindow(g:vimspector_session_windows.output)<CR>
+  nnoremap  <leader>vq :call vimspector#Reset()<CR>
+  nnoremap  <leader>vi <Plug>VimspectorStepInto
+  nnoremap  <leader>vu <Plug>VimspectorStepOver
+  nnoremap  <leader>vn <Plug>VimspectorStepOut
+  nnoremap  <leader>vr <Plug>VimspectorRestart
+  nnoremap  <leader>tc :call vimspector#Continue()<CR>
+  nnoremap  <leader><F11> <Plug>VimspectorUpFrame
+  nnoremap  <leader><F12> <Plug>VimspectorDownFrame
+  nnoremap  <leader>rc <Plug>VimspectorRunToCursor
+  nnoremap  <leader>tb <Plug>VimspectorToggleBreakpoint
+  nnoremap  <leader>cb <Plug>VimspectorToggleConditionalBreakpoint
 
   let g:vimspector_sign_priority = {
   \    'vimspectorBP':         998,

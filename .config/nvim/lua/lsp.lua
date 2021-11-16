@@ -1,10 +1,5 @@
-require('null-ls').config({
-  source = {
-    require('null-ls').builtins.completion.spell,
-  }
-})
-
 local nvim_lsp = require('lspconfig')
+
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -30,34 +25,25 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'omnisharp', 'jsonls', 'vimls', 'clangd' }
+local servers = {  'tsserver', 'omnisharp' , 'clangd'}
 for _, lsp in ipairs(servers) do
-   if(lsp == "omnisharp") then
-     local omnisharp_bin = "/usr/bin/omnisharp"
-      nvim_lsp[lsp].setup{
-         cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
-         on_attach = on_attach,
-         capabilities = {
-            textDocument = {
-               completion = {
-                  completionItem = {
-                     snippetSupport = true,
-                  },
-               },
-            },
-         },
-      }
+  if lsp == 'omnisharp' then
+    local pid = vim.fn.getpid()
+    local omnisharp_bin = "/usr/bin/omnisharp"
+    nvim_lsp[lsp].setup {
+       cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) },
+       on_attach = on_attach
+     }
    else
-      nvim_lsp[lsp].setup{
-         on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
+    nvim_lsp[lsp].setup {
+      on_attach = on_attach,
+      flags = {
+        debounce_text_changes = 150,
       }
-   end
+  }
+end
 end
 
 vim.cmd([[

@@ -22,8 +22,8 @@ api.nvim_set_keymap("n","<C-b>",":NvimTreeToggle<cr>",{ noremap = true, silent =
 api.nvim_set_keymap("n","<BS>","<C-^>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<leader>t",":vsp<space>$todo<CR>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<leader>n",":cnext",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<leader>p",":cprev",{ noremap = true, silent = true })
+api.nvim_set_keymap("n","<leader>n",":cnext<CR>",{ noremap = true, silent = true })
+api.nvim_set_keymap("n","<leader>p",":cprev<CR>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<leader>cs",":so ~/.config/nvim/init.lua<CR>",{ noremap = true, silent = true })
 api.nvim_set_keymap("n","<leader>co",":e ~/.config/nvim/init.lua<CR>",{ noremap = true, silent = true })

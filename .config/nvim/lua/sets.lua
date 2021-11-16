@@ -18,3 +18,4 @@ opt.wrap = true
 opt.linebreak = true
 opt.colorcolumn = "80"
 opt.swapfile = false
+opt.clipboard = "unnamedplus"
