@@ -29,6 +29,10 @@ return require('packer').startup(function()
  use 'rstacruz/vim-closer'
  use 'tpope/vim-obsession'
  use 'puremourning/vimspector'
+ use 'junegunn/limelight.vim'
+ use 'godlygeek/tabular'
+ use 'plasticboy/vim-markdown'
+ use 'iamcco/markdown-preview.nvim'
      use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'

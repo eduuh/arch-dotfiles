@@ -4,7 +4,7 @@ local telescope = require('telescope')
 telescope.setup{
 defaults = {
      prompt_prefix = "> ",
-  file_ignore_patterns = {"obj", "bin", "node_modules", "plugged"},
+  file_ignore_patterns = {"obj", "bin", "node_modules", "plugged", "autoload"},
   mappings= {
      i = {
       ["<c-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,

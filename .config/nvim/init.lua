@@ -57,15 +57,15 @@ vim.cmd([[
   nnoremap  <leader>vs :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
   nnoremap  <leader>vo :call GotoWindow(g:vimspector_session_windows.output)<CR>
   nnoremap  <leader>vq :call vimspector#Reset()<CR>
-  nnoremap  <leader>vi <Plug>VimspectorStepInto
-  nnoremap  <leader>vu <Plug>VimspectorStepOver
+  nnoremap  <leader>vi :call vimspector#StepInto()<CR>
+  nnoremap  <leader>vu <Plug>VimspectorStepOver<CR>
   nnoremap  <leader>vn <Plug>VimspectorStepOut
   nnoremap  <leader>vr <Plug>VimspectorRestart
   nnoremap  <leader>tc :call vimspector#Continue()<CR>
   nnoremap  <leader><F11> <Plug>VimspectorUpFrame
   nnoremap  <leader><F12> <Plug>VimspectorDownFrame
   nnoremap  <leader>rc <Plug>VimspectorRunToCursor
-  nnoremap  <leader>tb <Plug>VimspectorToggleBreakpoint
+  nnoremap  <leader>tb :call vimspector#ToggleBreakpoint()<CR>
   nnoremap  <leader>cb <Plug>VimspectorToggleConditionalBreakpoint
 
   let g:vimspector_sign_priority = {

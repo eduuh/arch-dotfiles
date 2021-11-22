@@ -5,6 +5,7 @@ global_settings = {
         save_on_toggle = false,
         save_on_change = true,
         enter_on_sendcmd = true,
+        excluded_filetypes = {"harpoon"}
     },
     projects = {
         ["/home/edd/repos/catalog.git/master"] = {
@@ -13,16 +14,24 @@ global_settings = {
                     "dotnet build && dotnet watch run"
                 }
             }
+        },
+        ["/home/edd/repos/Learning.git/master/datastructuresandAlgorithms/cplusplus/cprogramming"] = {
+            term = {
+                cmds = {
+                    "g++ -g % -o program && ./program"
+                }
+            }
         }
       }
 })
 
 vim.cmd([[
- nnoremap <C-h> :lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap <C-t> :lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <C-n> :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
-nnoremap <C-h> :lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>
+nnoremap <leader>a :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <leader>b :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <leader>c :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <leader>d :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <leader>tm :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>ht :lua require('harpoon.ui').toggle_quick_menu()<CR>
 nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <leader>te :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <leader>cu :lua require("harpoon.term").sendCommand(1, 1)<CR>
