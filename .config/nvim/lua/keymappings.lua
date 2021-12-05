@@ -17,16 +17,15 @@ api.nvim_set_keymap("n","h","u",{ noremap = true, silent = true })
 api.nvim_set_keymap("t","<Esc>","<C-><C-n>",{ noremap = true, silent = true })
 
 --plugin remaps
-api.nvim_set_keymap("n","<C-b>",":NvimTreeToggle<cr>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<BS>","<C-^>",{ noremap = true, silent = true })
+api.nvim_set_keymap("n","<c-b>",":nvimtreetoggle<cr>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<leader>t",":vsp<space>$todo<CR>",{ noremap = true, silent = true })
 api.nvim_set_keymap("n","<leader>n",":cnext<CR>",{ noremap = true, silent = true })
 api.nvim_set_keymap("n","<leader>p",":cprev<CR>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<leader>cs",":so ~/.config/nvim/init.lua<CR>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<leader>co",":e ~/.config/nvim/init.lua<CR>",{ noremap = true, silent = true })
 
 
 vim.cmd([[

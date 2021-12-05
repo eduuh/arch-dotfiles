@@ -1,19 +1,16 @@
 require('plugins')
 require('keymappings')
 require('sets')
-
 require'nvim-tree'.setup()
 require('lsp')
 require('compe-config')
-
 require('telescope-config')
-
 require('autosave').setup(
   {
         events = {"InsertLeave","TextChanged", "BufLeave"},
   }
 )
-
+require('harpoon-config')
 -- tree sitter
 require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
@@ -21,19 +18,20 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   }
-  }
+}
 
 local neogit = require('neogit')
 neogit.setup()
 
-require('harpoon-config')
 
 --set theme
+vim.o.background = "dark"
 vim.cmd([[
-   colorscheme nightfox
+   "colorscheme gruvbox
+   colorscheme dracula
 ]])
 
--- remove whitespaces ff
+--remove whitespaces ff
 vim.cmd([[
    autocmd BufWritePre * %s/\s\+$//e
    autocmd BufWritePre * %s/\n\+\%$//e
@@ -53,7 +51,7 @@ vim.cmd([[
   nnoremap  <leader>vc :call GotoWindow(g:vimspector_session_windows.code)<CR>
   nnoremap  <leader>vt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
   nnoremap  <leader>vv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-  nnoremap  <leader>vw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+  nnoremap  <leader>vw :call GotoWndow(g:vimspector_session_windows.watches)<CR>
   nnoremap  <leader>vs :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
   nnoremap  <leader>vo :call GotoWindow(g:vimspector_session_windows.output)<CR>
   nnoremap  <leader>vq :call vimspector#Reset()<CR>
@@ -74,4 +72,9 @@ vim.cmd([[
   \    'vimspectorBPDisabled': 996,
   \    'vimspectorPC':         999,
   \ }
+]])
+
+vim.cmd([[
+  nnoremap <leader>co :Telescope find_files cwd=~/.config/nvim <CR>
+  command -nargs=* -complete=help Help vertical belowright help <args>
 ]])
