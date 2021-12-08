@@ -18,7 +18,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
@@ -27,13 +27,20 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local servers = {  'tsserver', 'omnisharp' , 'clangd'}
+-- yamlls - for kubernetes and docker-compose I could override the schemas
+
+local servers = {  'tsserver','html', 'omnisharp' , 'clangd', 'tailwindcss', 'dockerls', 'yamlls'}
 for _, lsp in ipairs(servers) do
   if lsp == 'omnisharp' then
     local pid = vim.fn.getpid()
     local omnisharp_bin = "/usr/bin/omnisharp"
     nvim_lsp[lsp].setup {
        cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) },
+       on_attach = on_attach
+     }
+     elseif lsp == 'html' then
+    nvim_lsp[lsp].setup {
+       filetypes = { "html", "razor","blazor" ,"aspnetcorerazor"},
        on_attach = on_attach
      }
    else
@@ -47,8 +54,11 @@ end
 end
 
 vim.cmd([[
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.cs lua vim.lsp.buf.formatting_sync(nil, 100)
+augroup lsp
+  autocmd!
+  autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+  autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+  autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
+  autocmd BufWritePre *.cs lua vim.lsp.buf.formatting_sync(nil, 100)
+augroup end
 ]])

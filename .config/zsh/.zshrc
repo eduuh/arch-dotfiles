@@ -81,8 +81,10 @@ ensure_tmux_is_running() {
   fi
 }
 
-ensure_tmux_is_running
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home/edd/.dotnet/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/edd/.local/bin:/home/edd/.local/bin/cron:/home/edd/.local/bin/__pycache__:/home/edd/.local/bin/statusbar:/usr/lib/jvm/default/bin:/snap/bin
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+ensure_tmux_is_running
+eval "$(starship init zsh)"

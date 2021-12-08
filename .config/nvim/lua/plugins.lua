@@ -30,8 +30,14 @@ return require('packer').startup(function()
  use 'tpope/vim-obsession'
  use 'puremourning/vimspector'
  use 'godlygeek/tabular'
- use 'plasticboy/vim-markdown'
- use 'iamcco/markdown-preview.nvim'
+ use 'norcalli/nvim-colorizer.lua'
+ use {
+  'nvim-lualine/lualine.nvim',
+  requires = {'kyazdani42/nvim-web-devicons', opt = true}
+}
+ use 'chipsenkbeil/distant.nvim'
+ --use 'plasticboy/vim-markdown'
+ --use 'iamcco/markdown-preview.nvim'
 -- themes
 use 'Mofiqul/dracula.nvim'
 use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}

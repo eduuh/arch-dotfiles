@@ -13,7 +13,6 @@ opt.expandtab = true
 opt.textwidth = 100
 opt.mouse = "a"
 opt.signcolumn = "yes"
-opt.wrap = true
 opt.linebreak = true
 opt.colorcolumn = "80"
 opt.swapfile = false
@@ -25,6 +24,8 @@ opt.smartcase = true
 vim.cmd([[
     set nocompatible
     set backspace=indent,eol,start
+    set noerrorbells
+    set termguicolors
     set autoindent
     set cursorline
     "set cursorcolumn
@@ -36,10 +37,14 @@ vim.cmd([[
     set expandtab
     set textwidth=100
     set signcolumn=yes
-    set wrap
     set linebreak
+    set wrap
     set clipboard=unnamedplus
     "reqular expressions
     set magic
+    set nofoldenable
     set encoding=utf-8
+    set lazyredraw
+    set autoread
+    au CursorHold * checktime
 ]])

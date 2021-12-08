@@ -5,6 +5,7 @@ require'nvim-tree'.setup()
 require('lsp')
 require('compe-config')
 require('telescope-config')
+
 require('autosave').setup(
   {
         events = {"InsertLeave","TextChanged", "BufLeave"},
@@ -20,30 +21,51 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
+
+require 'colorizer'.setup {
+  'css';
+  'javascript';
+  'xdefaults';
+  html = {
+    mode = 'foreground';
+  }
+}
+
+require('lualine').setup{
+   options = {
+          theme = 'codedark'
+   }
+}
+
 local neogit = require('neogit')
 neogit.setup()
-
 
 --set theme
 vim.o.background = "dark"
 vim.cmd([[
    "colorscheme gruvbox
-   colorscheme dracula
+    colorscheme dracula
 ]])
 
 --remove whitespaces ff
 vim.cmd([[
+augroup whitespaces
+   autocmd!
    autocmd BufWritePre * %s/\s\+$//e
    autocmd BufWritePre * %s/\n\+\%$//e
    autocmd BufWritePre *.[ch] %s/\%$/\r/e
    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup end
 ]])
 
 
 --Run xrdb whenever xdefault or xresources changes
 vim.cmd([[
-   autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
-   autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
+  augroup xrdb
+     autocmd!
+     autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
+     autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
+   augroup end
 ]])
 
 vim.cmd([[
@@ -75,6 +97,5 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-  nnoremap <leader>co :Telescope find_files cwd=~/.config/nvim <CR>
   command -nargs=* -complete=help Help vertical belowright help <args>
 ]])

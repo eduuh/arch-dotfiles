@@ -4,9 +4,16 @@
 # choose the kind of screenshot to take, including copying the image or even
 # highlighting an area to copy. scrotcucks on suicidewatch right now.
 
+
+
+imgpath="/home/edd/repos/hotchocolate/images/"
+nameprefix="hotchocolate"
+fullpath=$imgpath/$nameprefix-$(date '+%y%m%d-%H%M-%S').png
+
+echo $fullpath
 case "$(printf "a selected area\\ncurrent window\\nfull screen\\na selected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -l 6 -i -p "Screenshot which area?")" in
-	"a selected area") maim -s ~/images/pic-selected-"$(date '+%y%m%d-%H%M-%S').png" ;;
-	"current window") maim -i "~/images/$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
+  "a selected area") maim -s $fullpath ;;
+  "current window") maim -i "$imgpath/$(xdotool getactivewindow)" pic-window-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"full screen") maim ~/images/fullscreen/pic-full-"$(date '+%y%m%d-%H%M-%S').png" ;;
 	"a selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
 	"current window (copy)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;

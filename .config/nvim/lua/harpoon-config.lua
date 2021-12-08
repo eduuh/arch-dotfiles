@@ -28,7 +28,7 @@ global_settings = {
 vim.cmd([[
 nnoremap <leader>a :lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <leader>b :lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <leader>c :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <leader>n :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>d :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>tm :lua require("harpoon.mark").add_file()<CR>
 nnoremap <leader>ht :lua require('harpoon.ui').toggle_quick_menu()<CR>
