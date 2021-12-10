@@ -19,7 +19,7 @@ api.nvim_set_keymap("t","<Esc>","<C-><C-n>",{ noremap = true, silent = true })
 --plugin remaps
 
 api.nvim_set_keymap("n","<BS>","<C-^>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<c-b>",":NvimTreeToggle<cr>",{ noremap = true, silent = true })
+api.nvim_set_keymap("n","<c-b>",":Defx<cr>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<leader>t",":vsp<space>$todo<CR>",{ noremap = true, silent = true })
 api.nvim_set_keymap("n","<leader>n",":cnext<CR>",{ noremap = true, silent = true })
@@ -34,4 +34,9 @@ vim.cmd([[
   cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
   nnoremap <leader>co :Telescope find_files cwd=~/.config/nvim <CR>
   nnoremap <leader>lc :Telescope find_files cwd=~/.local/bin <CR>
+  "ident in visual mode
+  vnoremap > >gv
+  vnoremap < <gv
+  "escape to get out of term mode
+  tnoremap <Esc> <C-\><C-n>
 ]])

@@ -9,15 +9,10 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require'nvim-tree'.setup {} end
-}
  use 'neovim/nvim-lspconfig'
  use 'hrsh7th/nvim-compe'
  use 'tpope/vim-commentary'
- use 'github/copilot.vim'
+ --use 'github/copilot.vim'
  use 'Pocco81/AutoSave.nvim'
  use 'nvim-telescope/telescope.nvim'
  use 'ThePrimeagen/git-worktree.nvim'
@@ -31,27 +26,33 @@ return require('packer').startup(function()
  use 'puremourning/vimspector'
  use 'godlygeek/tabular'
  use 'norcalli/nvim-colorizer.lua'
+ use 'tpope/vim-surround'
+   use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
  use {
   'nvim-lualine/lualine.nvim',
   requires = {'kyazdani42/nvim-web-devicons', opt = true}
 }
- use 'chipsenkbeil/distant.nvim'
- --use 'plasticboy/vim-markdown'
- --use 'iamcco/markdown-preview.nvim'
+use 'chipsenkbeil/distant.nvim'
+--use 'plasticboy/vim-markdown'
+--use 'iamcco/markdown-preview.nvim'
 -- themes
 use 'Mofiqul/dracula.nvim'
 use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-     use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
- use 'jose-elias-alvarez/null-ls.nvim'
- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
- use 'mattn/emmet-vim'
- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
 use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
+'Shougo/defx.nvim',
+run = ':UpdateRemotePlugins'
+}
+use 'kristijanhusak/defx-git'
+use 'jose-elias-alvarez/null-ls.nvim'
+use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+use 'mattn/emmet-vim'
+use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
+use {
+'glacambre/firenvim',
+run = function() vim.fn['firenvim#install'](0) end
 }
 
 end)

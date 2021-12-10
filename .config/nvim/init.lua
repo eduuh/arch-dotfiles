@@ -1,10 +1,10 @@
 require('plugins')
 require('keymappings')
 require('sets')
-require'nvim-tree'.setup()
 require('lsp')
 require('compe-config')
 require('telescope-config')
+require('defx')
 
 require('autosave').setup(
   {
@@ -14,7 +14,7 @@ require('autosave').setup(
 require('harpoon-config')
 -- tree sitter
 require('nvim-treesitter.configs').setup {
-  ensure_installed = "all",
+  ensure_installed = "maintained",
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
