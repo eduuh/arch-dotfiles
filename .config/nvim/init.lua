@@ -98,4 +98,5 @@ vim.cmd([[
 
 vim.cmd([[
   command -nargs=* -complete=help Help vertical belowright help <args>
+  command! -nargs=0 Format :call CocAction('format')
 ]])

@@ -18,6 +18,7 @@ opt.swapfile = false
 opt.clipboard = "unnamedplus"
 opt.wildmode= { "list", "longest"}
 opt.smartcase = true
+opt.mouse = "a"
 
 vim.cmd([[
     set noscrollbind

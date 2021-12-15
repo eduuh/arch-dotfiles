@@ -1,6 +1,6 @@
 ! Transparency (0-1):
 *.alpha: 1
-Xft.dpi: 178
+Xft.dpi: 160
 !! Set a default font and font size as below:
 *.font: Fira Code:size=13
 

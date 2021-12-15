@@ -11,7 +11,7 @@ global_settings = {
         ["/home/edd/repos/catalog.git/master"] = {
             term = {
                 cmds = {
-                    "dotnet build && dotnet watch run"
+                    "dotnet build"
                 }
             }
         },
@@ -26,10 +26,10 @@ global_settings = {
 })
 
 vim.cmd([[
-nnoremap <leader>a :lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap <leader>b :lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <leader>n :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <leader>d :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <leader>! :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <leader>[ :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <leader>] :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <leader>" :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>tm :lua require("harpoon.mark").add_file()<CR>
 nnoremap <leader>ht :lua require('harpoon.ui').toggle_quick_menu()<CR>
 nnoremap <leader>tu :lua require("harpoon.term").gotoTerminal(1)<CR>

@@ -39,4 +39,6 @@ vim.cmd([[
   vnoremap < <gv
   "escape to get out of term mode
   tnoremap <Esc> <C-\><C-n>
+  autocmd FileType cs nmap <silent> <buffer> <Leader>b :!dotnet build
+  autocmd FileType cpp nmap  <buffer> <Leader>b :!g++ -g -Wall % -o program <cr>
 ]])
