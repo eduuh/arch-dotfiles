@@ -1,6 +1,11 @@
 local opt = vim.opt
 
-opt.completeopt = {'menuone', 'noinsert', 'noselect'}
+vim.cmd([[
+let g:sharpenup_map_prefix = '<leader>'
+]])
+
+opt.updatetime = 250
+opt.completeopt = {'menuone', 'menu', 'noselect'}
 opt.expandtab = true
 opt.hidden = true
 opt.ignorecase = true

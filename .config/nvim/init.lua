@@ -5,12 +5,21 @@ require('lsp')
 require('compe-config')
 require('telescope-config')
 require('defx')
+require('csharpSource')
+
+vim.cmd([[
+set omnifunc=ale#completion#OmniFunc
+let g:ale_fix_on_save = 1
+let g:ale_completion_autoimport = 1
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+]])
 
 require('autosave').setup(
   {
-        events = {"InsertLeave","TextChanged", "BufLeave"},
+       events = {"TextChanged", "BufLeave"},
   }
 )
+
 require('harpoon-config')
 -- tree sitter
 require('nvim-treesitter.configs').setup {
@@ -51,10 +60,9 @@ vim.cmd([[
 vim.cmd([[
 augroup whitespaces
    autocmd!
-   autocmd BufWritePre * %s/\s\+$//e
-   autocmd BufWritePre * %s/\n\+\%$//e
-   autocmd BufWritePre *.[ch] %s/\%$/\r/e
-   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  "autocmd BufWritePre * %s/\s\+$//e
+  "autocmd BufWritePre * %s/\n\+\%$//e
+  "autocmd BufWritePre *.[ch] %s/\%$/\r/e
 augroup end
 ]])
 
@@ -99,4 +107,10 @@ vim.cmd([[
 vim.cmd([[
   command -nargs=* -complete=help Help vertical belowright help <args>
   command! -nargs=0 Format :call CocAction('format')
+]])
+
+
+vim.cmd([[
+    lua require 'tagfunc_nvim_lsp'
+    setlocal tagfunc=v:lua.tagfunc_nvim_lsp
 ]])

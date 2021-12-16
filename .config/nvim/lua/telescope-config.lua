@@ -14,7 +14,6 @@ defaults = {
      i = {
       ["<c-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
       ["<c-s"] = require("telescope.actions").send_selected_to_qflist + require("telescope.actions").open_qflist,
-      ["C-u"] = { "<C-e>", type="command"}
       }
     },
      extensions = {
@@ -32,10 +31,23 @@ telescope.load_extension("git_worktree")
 api.nvim_set_keymap("n","<leader>gw",":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",{ noremap = true, silent = true })
 api.nvim_set_keymap("n","<leader>gm",":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",{ noremap = true, silent = true })
 
-api.nvim_set_keymap("n","<leader>tb",":lua require('telescope.builtin').buffers()<CR>",{ noremap = true, silent = true })
+api.nvim_set_keymap("n","<leader>fb",":lua require('telescope.builtin').buffers()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>ff",":lua require('telescope.builtin').git_files()<CR>",{ noremap = true, silent = true })
 
 api.nvim_set_keymap("n","<leader>fg",":lua require('telescope.builtin').live_grep()<CR>",{ noremap = true, silent = true })
 
-api.nvim_set_keymap("n","<C-p>",":lua require('telescope.builtin').git_files()<CR>",{ noremap = true, silent = true })
+api.nvim_set_keymap("n","<C-p>",":lua require('telescope.builtin').find_files()<CR>",{ noremap = true, silent = true })
 
-api.nvim_set_keymap("n","<leader>ff",":lua require('telescope.builtin').find_files()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>lr",":lua require('telescope.builtin').lsp_references()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>ls",":lua require('telescope.builtin').lsp_document_symbols()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>la",":lua require('telescope.builtin').lsp_code_actions()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>la",":lua require('telescope.builtin').lsp_code_actions()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>ld",":lua require('telescope.builtin').lsp_definitions()<CR>",{ noremap = true, silent = true })
+
+api.nvim_set_keymap("n","<leader>lD",":lua require('telescope.builtin').lsp_type_definitions()<CR>",{ noremap = true, silent = true })

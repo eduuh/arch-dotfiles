@@ -28,6 +28,7 @@ api.nvim_set_keymap("n","<leader>p",":cprev<CR>",{ noremap = true, silent = true
 api.nvim_set_keymap("n","<leader>cs",":so ~/.config/nvim/init.lua<CR>",{ noremap = true, silent = true })
 
 
+
 vim.cmd([[
   vnoremap U :m '<-2<CR>gv=gv
   vnoremap E :m '>+1<CR>gv=gv
@@ -41,4 +42,5 @@ vim.cmd([[
   tnoremap <Esc> <C-\><C-n>
   autocmd FileType cs nmap <silent> <buffer> <Leader>b :!dotnet build
   autocmd FileType cpp nmap  <buffer> <Leader>b :!g++ -g -Wall % -o program <cr>
+  nnoremap <leader>cd :cd %:p:h<CR>
 ]])

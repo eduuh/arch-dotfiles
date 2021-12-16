@@ -8,11 +8,10 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+ use 'wbthomason/packer.nvim'
  use 'neovim/nvim-lspconfig'
- use 'hrsh7th/nvim-compe'
  use 'tpope/vim-commentary'
- --use 'github/copilot.vim'
+ use 'github/copilot.vim'
  use 'Pocco81/AutoSave.nvim'
  use 'nvim-telescope/telescope.nvim'
  use 'ThePrimeagen/git-worktree.nvim'
@@ -27,6 +26,9 @@ return require('packer').startup(function()
  use 'godlygeek/tabular'
  use 'norcalli/nvim-colorizer.lua'
  use 'tpope/vim-surround'
+ use 'tpope/vim-dispatch'
+ use 'Shougo/vimproc.vim'
+ use 'dense-analysis/ale'
    use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -40,6 +42,7 @@ use 'chipsenkbeil/distant.nvim'
 --use 'iamcco/markdown-preview.nvim'
 -- themes
 use 'Mofiqul/dracula.nvim'
+use 'OmniSharp/omnisharp-vim'
 use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 use {
 'Shougo/defx.nvim',
@@ -54,5 +57,17 @@ use {
 'glacambre/firenvim',
 run = function() vim.fn['firenvim#install'](0) end
 }
+
+use 'nickspoons/vim-sharpenup'
+
+-- completion , snippets and Sources
+use 'hrsh7th/cmp-buffer'
+use 'hrsh7th/cmp-path'
+use 'hrsh7th/cmp-cmdline'
+use 'hrsh7th/nvim-cmp'
+use 'hrsh7th/vim-vsnip'
+use 'hrsh7th/vim-vsnip-integ'
+use 'hrsh7th/cmp-nvim-lsp'
+
 
 end)
