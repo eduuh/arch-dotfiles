@@ -18,7 +18,7 @@ cmp.setup({
   ['<C-b>'] = cmp.mapping.scroll_docs(-4),
   ['<C-f>'] = cmp.mapping.scroll_docs(4),
  ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-  ['<leader><leader>'] = cmp.mapping.complete(),
+  ['<C-.>'] = cmp.mapping.complete(),
   ['<CR>'] = cmp.mapping.confirm({
     behavior = cmp.ConfirmBehavior.Replace,
     select = true,
