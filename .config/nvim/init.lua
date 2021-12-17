@@ -7,6 +7,7 @@ require('telescope-config')
 require('defx')
 require('csharpSource')
 
+
 vim.cmd([[
 set omnifunc=ale#completion#OmniFunc
 let g:ale_fix_on_save = 1
@@ -21,9 +22,10 @@ require('autosave').setup(
 )
 
 require('harpoon-config')
+
 -- tree sitter
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,

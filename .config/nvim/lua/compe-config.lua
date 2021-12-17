@@ -34,11 +34,8 @@ cmp.setup({
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
       { name = 'buffer' },
+      { name = 'path' },
     })
   })
 
@@ -50,24 +47,31 @@ cmp.setup({
   })
 
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-
-cmp.setup.cmdline('g', {
-  sources = cmp.config.sources({
-    { name = 'path' },
-  }, {
+require'cmp'.setup.cmdline(':', {
+  sources = {
     { name = 'cmdline' }
+  }
+})
+
+require'cmp'.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+require'cmp'.setup.cmdline('/', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp_document_symbol' }
+  }, {
+    { name = 'buffer' }
   })
 })
 
-
-
+require'cmp'.setup {
+  sources = {
+    { name = 'omni' }
+  }
+}
 
 --vsnip
 vim.cmd([[

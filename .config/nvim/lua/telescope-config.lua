@@ -1,5 +1,8 @@
-local api = vim.api
+local keymap = vim.api.nvim_set_keymap
 local telescope = require('telescope')
+
+local opts = { noremap = true, silent = true }
+local term_opt = { silent = true }
 
 telescope.setup{
 pickers = {
@@ -28,26 +31,31 @@ defaults = {
 
 telescope.load_extension("fzf")
 telescope.load_extension("git_worktree")
-api.nvim_set_keymap("n","<leader>gw",":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<leader>gm",":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>gw",":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",opts)
+keymap("n","<leader>gm",":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>fb",":lua require('telescope.builtin').buffers()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>fb",":lua require('telescope.builtin').buffers()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>ff",":lua require('telescope.builtin').git_files()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>ff",":lua require('telescope.builtin').git_files()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>fg",":lua require('telescope.builtin').live_grep()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>fg",":lua require('telescope.builtin').live_grep()<CR>",opts)
 
-api.nvim_set_keymap("n","<C-p>",":lua require('telescope.builtin').find_files()<CR>",{ noremap = true, silent = true })
+keymap("n","<C-p>",":lua require('telescope.builtin').find_files()<CR>",opts)
 
 
-api.nvim_set_keymap("n","<leader>lr",":lua require('telescope.builtin').lsp_references()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>lr",":lua require('telescope.builtin').lsp_references()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>ls",":lua require('telescope.builtin').lsp_document_symbols()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>ls",":lua require('telescope.builtin').lsp_document_symbols()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>la",":lua require('telescope.builtin').lsp_code_actions()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>la",":lua require('telescope.builtin').lsp_code_actions()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>la",":lua require('telescope.builtin').lsp_code_actions()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>la",":lua require('telescope.builtin').lsp_code_actions()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>ld",":lua require('telescope.builtin').lsp_definitions()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>ld",":lua require('telescope.builtin').lsp_definitions()<CR>",opts)
 
-api.nvim_set_keymap("n","<leader>lD",":lua require('telescope.builtin').lsp_type_definitions()<CR>",{ noremap = true, silent = true })
+keymap("n","<leader>lD",":lua require('telescope.builtin').lsp_type_definitions()<CR>",opts)
+
+keymap("n","<leader>co",":Telescope find_files cwd=~/.config/nvim <CR>",opts)
+keymap("n","<leader>lc",":Telescope find_files cwd=~/.local/bin <CR>",opts)
+
+

@@ -35,6 +35,9 @@ end
 
 -- yamlls - for kubernetes and docker-compose I could override the schemas
 --'omnisharp'
+--install lua server : https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
+-- lua stuff
+
 local servers = {  'tsserver','html', 'clangd', 'tailwindcss', 'dockerls', 'yamlls'}
 for _, lsp in ipairs(servers) do
   if lsp == 'omnisharp' then
@@ -61,6 +64,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 end
+
+
 vim.cmd([[
 augroup lsp
   autocmd!

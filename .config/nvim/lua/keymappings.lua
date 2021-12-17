@@ -1,46 +1,79 @@
-local api = vim.api
+local opts = { noremap = true, silent = true }
+local cmd_opts = { expr = true, noremap = true }
+-- shorten function name
+local keymap = vim.api.nvim_set_keymap
 
-api.nvim_set_keymap("n","<Space>","<NOP>",{ noremap = true, silent = true })
+--Modes
+-- normal_mode = "n"
+-- Insert_mode = "i"
+-- visual_mode = "v"
+-- visual_block_mode = "x"
+-- term_mode = "t"
+-- command_mode = "c"
+
+keymap("n","<Space>","<NOP>",opts)
+
 vim.g.mapleader = ' '
 vim.g.termguicolors = true
-api.nvim_set_keymap("n","<Leader>h",  ":set hlsearch!<CR>",  { noremap = true, silent = true } )
+keymap("n","<Leader>h",  ":set hlsearch!<CR>",  opts )
+
 --remapping movements
-api.nvim_set_keymap("n","n","h",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","e","j",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","i","l",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","u","k",{ noremap = true, silent = true })
+-- Normal Mode
+-- Remaps to my Custom Keyboard
+keymap("n","n","h",opts)
+keymap("n","e","j",opts)
+keymap("n","i","l",opts)
+keymap("n","u","k",opts)
+keymap("n","l","i",opts)
+keymap("n","k","n",opts)
+keymap("n","h","u",opts)
 
-api.nvim_set_keymap("n","l","i",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","k","n",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","h","u",{ noremap = true, silent = true })
+-- Terminal --
+-- harpoon --
+keymap("t","<Esc>","<C-><C-n>",opts)
 
-api.nvim_set_keymap("t","<Esc>","<C-><C-n>",{ noremap = true, silent = true })
+-- quickfix list
+keymap("n","<leader>n",":cnext<CR>",opts)
+keymap("n","<leader>p",":cprev<CR>",opts)
 
---plugin remaps
+-- Naviagate buffers
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Alternate file
+keymap("n","<BS>","<C-^>",opts)
+keymap("i","<c-o>","<C-x><C-x>",opts)
 
-api.nvim_set_keymap("n","<BS>","<C-^>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<c-b>",":Defx<cr>",{ noremap = true, silent = true })
+-- Toggle File Manaeger
+keymap("n","<c-t>",":Defx<cr>",opts)
 
-api.nvim_set_keymap("n","<leader>t",":vsp<space>$todo<CR>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<leader>n",":cnext<CR>",{ noremap = true, silent = true })
-api.nvim_set_keymap("n","<leader>p",":cprev<CR>",{ noremap = true, silent = true })
+-- Visual --
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
 
-api.nvim_set_keymap("n","<leader>cs",":so ~/.config/nvim/init.lua<CR>",{ noremap = true, silent = true })
+-- Move text up and down
+keymap("v", "U", ":m '<-2<CR>gv=gv", opts)
+keymap("v", "E", ":m '>+1<CR>gv=gv", opts)
+keymap("n", "<leader>cd", ":cd %:p:h<CR>", opts) 
+
+-- Builds can run asynchoronousul with vim dispatch installed
+keymap("n", "<leader>b", ":wa!<cr>:OmniSharpBuildAsync<cr>", opts)
+keymap("n", "<C-b>", ":wa!<cr>:OmniSharpBuildAsync<cr>", opts)
 
 
+-- Command --
+-- Menu navigation
+keymap("c", "<C-j>",  'pumvisible() ? "\\<C-n>" : "\\<C-j>"', cmd_opts )
+keymap("c", "<C-k>",  'pumvisible() ? "\\<C-p>" : "\\<C-k>"', cmd_opts )
+keymap("c", "w!!",  'execute "silent! write !sudo tee % >/dev/null" <bar> edit!', cmd_opts)
 
 vim.cmd([[
-  vnoremap U :m '<-2<CR>gv=gv
-  vnoremap E :m '>+1<CR>gv=gv
-  cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-  nnoremap <leader>co :Telescope find_files cwd=~/.config/nvim <CR>
-  nnoremap <leader>lc :Telescope find_files cwd=~/.local/bin <CR>
-  "ident in visual mode
-  vnoremap > >gv
-  vnoremap < <gv
-  "escape to get out of term mode
-  tnoremap <Esc> <C-\><C-n>
   autocmd FileType cs nmap <silent> <buffer> <Leader>b :!dotnet build
   autocmd FileType cpp nmap  <buffer> <Leader>b :!g++ -g -Wall % -o program <cr>
-  nnoremap <leader>cd :cd %:p:h<CR>
+  autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
 ]])
+
+-- TODO force omnisharp to reload server when switching branches
+-- noremap <leader>rl :OmniSharpReloadSolution<cr>
+-- nnoremap <leader>cf :OmniSharpCodeFormat<cr>
+

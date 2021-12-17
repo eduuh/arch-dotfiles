@@ -6,6 +6,14 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
 return require('packer').startup(function()
   -- Packer can manage itself
  use 'wbthomason/packer.nvim'
@@ -28,6 +36,7 @@ return require('packer').startup(function()
  use 'tpope/vim-surround'
  use 'tpope/vim-dispatch'
  use 'Shougo/vimproc.vim'
+
  use 'dense-analysis/ale'
    use {
         'nvim-treesitter/nvim-treesitter',
@@ -59,7 +68,6 @@ run = function() vim.fn['firenvim#install'](0) end
 }
 
 use 'nickspoons/vim-sharpenup'
-
 -- completion , snippets and Sources
 use 'hrsh7th/cmp-buffer'
 use 'hrsh7th/cmp-path'
@@ -68,6 +76,8 @@ use 'hrsh7th/nvim-cmp'
 use 'hrsh7th/vim-vsnip'
 use 'hrsh7th/vim-vsnip-integ'
 use 'hrsh7th/cmp-nvim-lsp'
+use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+use 'hrsh7th/cmp-omni'
 
 
 end)

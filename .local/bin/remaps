@@ -2,11 +2,16 @@
 
 # This script is called on startup to remap keys.
 # Increase key speed via a rate change
-xset r rate 300 50
+#xset r rate 300 50
+xset -r 
 # Map the caps lock key to super...
 setxkbmap -v us -variant colemak
 
 # make short-pressed Ctrl behave like Escape:
 xcape -e 'Control_L=Escape'
 xcape -e 'Shift_L=Escape'
-xcape -e 'Shift_R=Escape'
+
+xcape -e 'Shift_R=Return'
+
+
+
