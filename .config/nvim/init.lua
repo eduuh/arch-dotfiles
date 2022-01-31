@@ -2,11 +2,9 @@ require('plugins')
 require('keymappings')
 require('sets')
 require('lsp')
-require('compe-config')
 require('telescope-config')
 require('defx')
-require('csharpSource')
-
+--require('colemak')
 
 vim.cmd([[
 set omnifunc=ale#completion#OmniFunc
@@ -22,16 +20,6 @@ require('autosave').setup(
 )
 
 require('harpoon-config')
-
--- tree sitter
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  }
-}
-
 
 require 'colorizer'.setup {
   'css';
@@ -50,6 +38,8 @@ require('lualine').setup{
 
 local neogit = require('neogit')
 neogit.setup()
+
+require('nvim_comment').setup()
 
 --set theme
 vim.o.background = "dark"
@@ -74,7 +64,7 @@ vim.cmd([[
   augroup xrdb
      autocmd!
      autocmd BufRead,BufNewFile Xresources,Xdefaults,xresources,xdefaults set filetype=xdefaults
-     autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %
+     autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb -merge %
    augroup end
 ]])
 
@@ -112,7 +102,49 @@ vim.cmd([[
 ]])
 
 
+--org mode
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.org = {
+  install_info = {
+    url = 'https://github.com/milisims/tree-sitter-org',
+    revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
+    files = {'src/parser.c', 'src/scanner.cc'},
+  },
+  filetype = 'org',
+}
+
+
+-- tree sitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  highlight = {
+    enable = true,
+    disable = {'org'},
+    additional_vim_regex_highlighting = false,
+  },
+  ensure_installed = {'org'}
+}
+
+require('orgmode').setup({
+  org_agenda_files = {'~/projects/notes/*', '~/projects/notes/**/*'},
+  org_default_notes_file = '~/projects/notes/refile.org',
+  org_archive_location = '~/projects/notes/archivetodos.org',
+  org_todo_keywords = {'TODO', 'ACTIVE', 'NEXT', 'TESTING', 'DONE'},
+  mappings = {
+  org = {
+      org_toggle_checkbox = '<leader><leader>',
+  }
+  }
+})
+
+
 vim.cmd([[
-    lua require 'tagfunc_nvim_lsp'
-    setlocal tagfunc=v:lua.tagfunc_nvim_lsp
+  map f <Plug>Sneak_f
+  map F <Plug>Sneak_F
+  map t <Plug>Sneak_t
+  map T <Plug>Sneak_T
+ let g:closetag_xhtml_filetypes = 'xhtml,tsx'
 ]])
+
+
+require('cmp-config')

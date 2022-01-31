@@ -38,7 +38,7 @@ end
 --install lua server : https://github.com/sumneko/lua-language-server/wiki/Build-and-Run
 -- lua stuff
 
-local servers = {  'tsserver','html', 'clangd', 'tailwindcss', 'dockerls', 'yamlls'}
+local servers = { 'tsserver','html', 'clangd', 'tailwindcss', 'dockerls', 'yamlls'}
 for _, lsp in ipairs(servers) do
   if lsp == 'omnisharp' then
     local pid = vim.fn.getpid()

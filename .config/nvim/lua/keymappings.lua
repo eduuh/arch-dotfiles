@@ -17,17 +17,6 @@ vim.g.mapleader = ' '
 vim.g.termguicolors = true
 keymap("n","<Leader>h",  ":set hlsearch!<CR>",  opts )
 
---remapping movements
--- Normal Mode
--- Remaps to my Custom Keyboard
-keymap("n","n","h",opts)
-keymap("n","e","j",opts)
-keymap("n","i","l",opts)
-keymap("n","u","k",opts)
-keymap("n","l","i",opts)
-keymap("n","k","n",opts)
-keymap("n","h","u",opts)
-
 -- Terminal --
 -- harpoon --
 keymap("t","<Esc>","<C-><C-n>",opts)
@@ -41,10 +30,11 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Alternate file
 keymap("n","<BS>","<C-^>",opts)
-keymap("i","<c-o>","<C-x><C-x>",opts)
 
 -- Toggle File Manaeger
 keymap("n","<c-t>",":Defx<cr>",opts)
+keymap("i","<c-t>",":Defx<cr>",opts)
+keymap("v","<c-t>",":Defx<cr>",opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -58,7 +48,6 @@ keymap("n", "<leader>cd", ":cd %:p:h<CR>", opts)
 
 -- Builds can run asynchoronousul with vim dispatch installed
 keymap("n", "<leader>b", ":wa!<cr>:OmniSharpBuildAsync<cr>", opts)
-keymap("n", "<C-b>", ":wa!<cr>:OmniSharpBuildAsync<cr>", opts)
 
 
 -- Command --

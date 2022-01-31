@@ -3,8 +3,8 @@ local opt = vim.opt
 local options = {
    backup = false,                                  -- creates a backup file
    clipboard = "unnamedplus",                       -- allow neovim to access the system clipboard
-   cmdheight = 2,                                   -- more space in nvim command line for displaying messages
-   completeopt = { "menuone" , "noselect", "menu"}, -- mostly for cmp
+   cmdheight = 1,                                   -- more space in nvim command line for displaying messages
+   completeopt = "menuone,noinsert,menu",           -- mostly for cmp
    conceallevel = 0,                                -- so that `` is  visible in markdown files
    fileencoding = "utf-8",                          -- the encoding of written file
    hidden = true,                                   -- required to keep multiple buffers and open multiple buffers
@@ -18,7 +18,7 @@ local options = {
    splitright = true,                               -- force all vertical splits to go to the right of current window.
    swapfile = false,                                -- creates a swapfile; disables
    termguicolors = true,                            -- set term gui colors (most terminal support this)
-   timeoutlen= 300,                                 -- time to wait for a mapped sequence to complete (in milliseconds)
+   timeoutlen= 500,                                 -- time to wait for a mapped sequence to complete (in milliseconds)
    undofile=true,                                   -- enables persistent undo
    updatetime=300,                                  -- faster completion (4000 ms default)
    writebackup=false,                               -- if a file is being edited by another program
@@ -40,11 +40,3 @@ for k, v in pairs(options) do
 end
 
 
-vim.cmd([[
-" trigger `autoread` when files changes on disk
-      set autoread
-      autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
-    " notification after file change
-      autocmd FileChangedShellPost *
-        \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-]])
