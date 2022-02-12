@@ -50,11 +50,6 @@ COPY ./.config/nvim /root/.config/nvim/
 # Install Neovim extensions.
 RUN nvim --headless +PackerInstall +qall
 
-# Install Lazygit from binary
-RUN mkdir -p /root/TMP && cd /root/TMP && curl -L -o $LG_ARCHIVE $LG_GITHUB
-RUN cd /root/TMP && tar xzvf $LG_ARCHIVE && mv $LG /usr/bin/
-RUN rm -rf /root/TMP
-
 
 # Create directory for projects (there should be mounted from host).
 RUN mkdir -p /root/workspace
