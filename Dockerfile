@@ -60,8 +60,6 @@ RUN mkdir -p /root/TMP && cd /root/TMP && curl -L -o $LG_ARCHIVE $LG_GITHUB
 RUN cd /root/TMP && tar xzvf $LG_ARCHIVE && mv $LG /usr/bin/
 RUN rm -rf /root/TMP
 
-# Bash aliases
-COPY ./home/ /root/
 
 # Create directory for projects (there should be mounted from host).
 RUN mkdir -p /root/workspace
