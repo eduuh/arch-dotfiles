@@ -50,7 +50,7 @@ RUN mkdir -p /root/.config/nvim
 
 # Copy Neovim configuration files.
 COPY ./config/ /root/.config/nvim/
-COPY ./.zshrc /root/.zshrc
+
 
 # Install Neovim extensions.
 RUN nvim --headless +PackerInstall +qall
