@@ -39,11 +39,6 @@ RUN cd /root/TMP && git clone https://github.com/neovim/neovim
 RUN cd /root/TMP/neovim && git checkout stable && make -j4 && make install
 RUN rm -rf /root/TMP
 
-# Create directory for Neovim spell check dictionaries.
-RUN mkdir -p /root/.local/share/nvim/site/spell
-
-# Copy Neovim dictionaries.
-COPY ./spell/ /root/.local/share/nvim/site/spell/
 
 # Create directory for Neovim configuration files.
 RUN mkdir -p /root/.config/nvim
