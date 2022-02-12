@@ -49,7 +49,7 @@ COPY ./spell/ /root/.local/share/nvim/site/spell/
 RUN mkdir -p /root/.config/nvim
 
 # Copy Neovim configuration files.
-COPY ./config/ /root/.config/nvim/
+COPY ./.config/nvim /root/.config/nvim/
 
 
 # Install Neovim extensions.
