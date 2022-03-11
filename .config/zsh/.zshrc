@@ -12,7 +12,7 @@ HISTFILE=~/.cache/zsh/history
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameddirrc"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnamirrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/zshnameduuhirrc"
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -73,6 +73,12 @@ bindkey '^e' edit-command-line
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home//.dotnet/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/eduuh/.local/bin:/home/eduuh/.local/bin/cron:/home/eduuh/.local/bin/__pycache__:/home/eduuh/.local/bin/statusbar:/usr/lib/jvm/default/bin:/snap/bin:~/.dotnet
+
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
 ensure_tmux_is_running() {
@@ -81,10 +87,8 @@ ensure_tmux_is_running() {
   fi
 }
 
-
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/home/edd/.dotnet/tools:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/edd/.local/bin:/home/edd/.local/bin/cron:/home/edd/.local/bin/__pycache__:/home/edd/.local/bin/statusbar:/usr/lib/jvm/default/bin:/snap/bin
-
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
 ensure_tmux_is_running
+
+export PATH="$PATH:/home/eduuh/.dotnet/tools"
+
 eval "$(starship init zsh)"
