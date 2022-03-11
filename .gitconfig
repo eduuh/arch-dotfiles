@@ -3,6 +3,3 @@
 	name = eduuh
 [init]
 	defaultBranch = main
-[pager]
-	branch = false
-	diff = false
