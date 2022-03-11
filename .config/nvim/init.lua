@@ -70,23 +70,18 @@ vim.cmd([[
 
 vim.cmd([[
   nnoremap <leader>vl :call vimspector#Launch()<CR>
-  nnoremap  <leader>vc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-  nnoremap  <leader>vt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
-  nnoremap  <leader>vv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-  nnoremap  <leader>vw :call GotoWndow(g:vimspector_session_windows.watches)<CR>
-  nnoremap  <leader>vs :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-  nnoremap  <leader>vo :call GotoWindow(g:vimspector_session_windows.output)<CR>
   nnoremap  <leader>vq :call vimspector#Reset()<CR>
-  nnoremap  <leader>vi :call vimspector#StepInto()<CR>
-  nnoremap  <leader>vu <Plug>VimspectorStepOver<CR>
-  nnoremap  <leader>vn <Plug>VimspectorStepOut
-  nnoremap  <leader>vr <Plug>VimspectorRestart
-  nnoremap  <leader>tc :call vimspector#Continue()<CR>
-  nnoremap  <leader><F11> <Plug>VimspectorUpFrame
-  nnoremap  <leader><F12> <Plug>VimspectorDownFrame
-  nnoremap  <leader>rc <Plug>VimspectorRunToCursor
+  nnoremap  <leader>i :call vimspector#StepInto()<CR>
+  nnoremap  <leader>u :call vimspector#StepOver()<CR>
+  nnoremap  <leader>o :call vimspector#StepOut()<CR>
+  nnoremap  <leader>r :call vimspector#Restart()<CR>
+  nnoremap  <leader>c :call vimspector#Continue()<CR>
+  nnoremap  <leader>su :call vimspector#UpFrame()<CR>
+  nnoremap  <leader>sd :call vimspector#DownFrame()<CR>
+  nnoremap  <leader>rc :call vimspector#RunToCursor()<CR>
   nnoremap  <leader>tb :call vimspector#ToggleBreakpoint()<CR>
-  nnoremap  <leader>cb <Plug>VimspectorToggleConditionalBreakpoint
+  nnoremap  <leader>cb :call vimspector#ClearBreakpoints()<CR>
+  
 
   let g:vimspector_sign_priority = {
   \    'vimspectorBP':         998,
@@ -125,18 +120,18 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {'org'}
 }
 
-require('orgmode').setup({
-  org_agenda_files = {'~/projects/notes/*', '~/projects/notes/**/*'},
-  org_default_notes_file = '~/projects/notes/refile.org',
-  org_archive_location = '~/projects/notes/archivetodos.org',
-  org_todo_keywords = {'TODO', 'ACTIVE', 'NEXT', 'TESTING', 'DONE'},
-  mappings = {
-  org = {
-      org_toggle_checkbox = '<leader><leader>',
-  }
-  }
-})
-
+-- require('orgmode').setup({
+--   org_agenda_files = {'~/projects/notes/*', '~/projects/notes/**/*'},
+--   org_default_notes_file = '~/projects/notes/refile.org',
+--   org_archive_location = '~/projects/notes/archivetodos.org',
+--   org_todo_keywords = {'TODO', 'ACTIVE', 'NEXT', 'TESTING', 'DONE'},
+--   mappings = {
+--   org = {
+--       org_toggle_checkbox = '<leader><leader>',
+--   }
+--   }
+-- })
+-- 
 
 vim.cmd([[
   map f <Plug>Sneak_f
@@ -146,5 +141,8 @@ vim.cmd([[
  let g:closetag_xhtml_filetypes = 'xhtml,tsx'
 ]])
 
+vim.cmd([[
+   command! -nargs=? Run :!g++ -g % -o /tmp/test && /tmp/test <CR>
+]])
 
 require('cmp-config')
