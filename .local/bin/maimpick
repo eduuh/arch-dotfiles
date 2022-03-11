@@ -6,8 +6,8 @@
 
 
 
-imgpath="/home/edd/repos/hotchocolate/images/"
-nameprefix="hotchocolate"
+imgpath="/home/eduuh/projects/vachuo-blog/public/static/images/rest"
+nameprefix="rest"
 fullpath=$imgpath/$nameprefix-$(date '+%y%m%d-%H%M-%S').png
 
 echo $fullpath
