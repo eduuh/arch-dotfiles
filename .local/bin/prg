@@ -1,0 +1,64 @@
+#!/bin/bash
+
+append() {
+  echo "
+  #include <bits/stdc++.h>
+  using namespace std;
+
+  void solve() {
+  }
+
+  int32_t main(int32_t argc, const char** argv) {
+  freopen(\"input.txt\", \"r\", stdin);
+  freopen(\"output.txt\", \"w\", stdout);
+  clock_t z = clock();
+
+  int t = 1;
+  cin >> t;
+  while(t--) solve(); 
+
+    cerr << \"Run Time :\" << ((double)(clock() - z) / CLOCKS_PER_SEC);
+    return 0;
+
+  }
+
+  " >> program.cpp
+}
+
+debugging() {
+  echo "
+{
+  \"configurations\": {
+    \"Launch\": {
+      \"adapter\": \"vscode-cpptools\",
+      \"configuration\": {
+        \"name\": \"cpp: Launch current file\",
+        \"request\": \"launch\",
+        \"type\": \"cppdbg\",
+        \"program\": \"/tmp/test\",
+        \"MIMode\": \"gdb\",
+        \"stopOnEntry\": true,
+        \"stopAtEntry\":true,
+        \"miDebuggerPath\": \"/usr/bin/gdb\",
+        \"cwd\":\"\${cwd}\"
+      }
+    }
+  }
+}
+  " >> .vimspector.json
+}
+
+
+clean() {
+  [ -f input.txt ] && rm input.txt
+  [ -f output.txt ] && rm output.txt
+  [ -f program.cpp ] && rm program.cpp
+  [ -f .vimspector.json ] && rm .vimspector.json
+}
+
+clean
+touch input.txt output.txt program.cpp .vimspector.json
+append
+debugging
+
+
