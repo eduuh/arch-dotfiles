@@ -87,8 +87,10 @@ use 'hrsh7th/nvim-cmp'
 
 -- orgmode
 use 'nvim-orgmode/orgmode'
-use 'tpope/vim-speeddating'
 use 'alvan/vim-closetag'
+use 'aklt/plantuml-syntax'
+use 'tyru/open-browser.vim'
+use 'weirongxu/plantuml-previewer.vim'
 
 use {"akinsho/org-bullets.nvim", config = function()
 require("org-bullets").setup {
