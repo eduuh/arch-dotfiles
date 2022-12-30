@@ -29,8 +29,6 @@ defaults = {
   }
 }
 
-telescope.load_extension("fzf")
-telescope.load_extension("git_worktree")
 keymap("n","<leader>gw",":lua require('telescope').extensions.git_worktree.git_worktrees()<CR>",opts)
 keymap("n","<leader>gm",":lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>",opts)
 
